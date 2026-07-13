@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Flame, Sparkles, Search, ChevronRight, Calendar } from "lucide-react";
+import { Flame, Sparkles, Search, ArrowLeft, ChevronRight, Calendar } from "lucide-react";
 
 interface Dish {
   id: number;
@@ -409,6 +409,7 @@ export default function MenuPage() {
         <section className="relative pt-32 pb-16 bg-charcoal-950 overflow-hidden text-center">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_-20%,rgba(232,98,44,0.12),rgba(0,0,0,0))]" />
           <div className="relative z-10 max-w-4xl mx-auto px-4">
+
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-charcoal-900 border border-charcoal-800 text-gold-500 text-xs font-semibold uppercase tracking-wider mb-4">
               <Flame className="w-4 h-4 text-[#E8622C] fill-[#E8622C]/20" />
@@ -429,10 +430,10 @@ export default function MenuPage() {
         {/* Menu Listings & Filtering Section */}
         <section className="relative pb-24 bg-charcoal-950">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             {/* Controls Bar: Category Filter (Left) & Search (Right) */}
             <div className="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-center mb-10 pb-6 border-b border-charcoal-800/40">
-              
+
               {/* Category Filter Tabs */}
               <div className="w-full lg:w-auto flex overflow-x-auto gap-2 pb-2 lg:pb-0 scrollbar-none [mask-image:linear-gradient(to_right,white_90%,transparent_100%)] lg:[mask-image:none]">
                 {categories.map((category) => {
@@ -444,11 +445,10 @@ export default function MenuPage() {
                         setActiveCategory(category);
                         setSearchQuery("");
                       }}
-                      className={`px-5 py-2.5 text-sm font-semibold font-heading rounded-full shrink-0 border transition-all duration-300 cursor-pointer ${
-                        isActive
-                          ? "bg-[#E8622C] border-[#E8622C] text-charcoal-50 shadow-[0_0_15px_rgba(232,98,44,0.3)]"
-                          : "bg-charcoal-900 border-charcoal-800 text-charcoal-300 hover:text-gold-500 hover:border-gold-500/20"
-                      }`}
+                      className={`px-5 py-2.5 text-sm font-semibold font-heading rounded-full shrink-0 border transition-all duration-300 cursor-pointer ${isActive
+                        ? "bg-[#E8622C] border-[#E8622C] text-charcoal-50 shadow-[0_0_15px_rgba(232,98,44,0.3)]"
+                        : "bg-charcoal-900 border-charcoal-800 text-charcoal-300 hover:text-gold-500 hover:border-gold-500/20"
+                        }`}
                     >
                       {category}
                     </button>
