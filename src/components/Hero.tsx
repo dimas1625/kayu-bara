@@ -28,10 +28,10 @@ export default function Hero() {
     >
       {/* Background FX: Dark Grid + Orange Ember Glows */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(230,81,0,0.15),rgba(0,0,0,0))]" />
-      
+
       {/* Bottom glowing amber light */}
       <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-ember-500/10 rounded-full blur-[120px] z-0 animate-pulse pointer-events-none" />
-      
+
       {/* Top right gold light */}
       <div className="absolute top-20 right-10 w-[300px] h-[300px] bg-gold-500/5 rounded-full blur-[100px] z-0 pointer-events-none" />
 
@@ -56,7 +56,7 @@ export default function Hero() {
 
         {/* Paragraph */}
         <p className="max-w-2xl text-charcoal-200 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-10 font-body">
-          Kami memanggang potongan daging terbaik di atas bara kayu kopi pilihan, 
+          Kami memanggang potongan daging terbaik di atas bara kayu kopi pilihan,
           menghasilkan aroma asap yang memikat dan kelembutan daging steak yang tiada tara.
         </p>
 
@@ -69,7 +69,7 @@ export default function Hero() {
             <Calendar className="w-5 h-5" />
             Reservasi Meja
           </button>
-          
+
           <Link
             href="/menu"
             className="flex items-center justify-center px-8 py-4 rounded bg-charcoal-900 text-gold-500 font-heading font-bold tracking-wider hover:bg-charcoal-800 hover:text-gold-400 border border-gold-500/20 hover:border-gold-500/40 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base"
@@ -80,9 +80,9 @@ export default function Hero() {
       </div>
 
       {/* Down arrow scroll helper */}
-      <div 
+      <div
         onClick={() => scrollToSection("menu")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-10 animate-bounce text-charcoal-300 hover:text-gold-500 transition-colors"
+        className="absolute bottom-3 left-1/2 -translate-x-1/2 cursor-pointer z-10 animate-bounce text-charcoal-300 hover:text-gold-500 transition-colors"
       >
         <span className="sr-only">Scroll down</span>
         <ChevronDown className="w-8 h-8" />
