@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Flame, ChefHat, Sparkles } from "lucide-react";
 
 interface Dish {
@@ -11,6 +12,8 @@ interface Dish {
   details: string[];
   // SVG Icon details
   iconType: "steak" | "ribs" | "salmon" | "chicken";
+  image: string;
+  category: string;
 }
 
 const dishes: Dish[] = [
@@ -22,7 +25,9 @@ const dishes: Dish[] = [
     tag: "Signature",
     tagType: "signature",
     details: ["400g Premium Wagyu", "Saus Smoked Chimichurri", "Bawang Putih Panggang"],
-    iconType: "steak"
+    iconType: "steak",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
+    category: "Signature"
   },
   {
     id: 2,
@@ -32,7 +37,9 @@ const dishes: Dish[] = [
     tag: "Favorit",
     tagType: "favorit",
     details: ["Iga Lembut 350g", "Madu Hitam Hutan", "Sambal Korek Asap"],
-    iconType: "ribs"
+    iconType: "ribs",
+    image: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&q=80",
+    category: "Signature"
   },
   {
     id: 3,
@@ -42,7 +49,9 @@ const dishes: Dish[] = [
     tag: "Premium",
     tagType: "premium",
     details: ["Salmon Atlantik 200g", "Saus Honey Mustard", "Sayuran Panggang"],
-    iconType: "salmon"
+    iconType: "salmon",
+    image: "https://images.unsplash.com/photo-1676300185165-3f543c1fcb72?w=600&q=80",
+    category: "Seafood"
   },
   {
     id: 4,
@@ -52,48 +61,13 @@ const dishes: Dish[] = [
     tag: "Favorit",
     tagType: "favorit",
     details: ["Ayam Organik", "Glace Madu Hutan", "Sambal Matah Kecombrang"],
-    iconType: "chicken"
+    iconType: "chicken",
+    image: "https://images.pexels.com/photos/5704254/pexels-photo-5704254.jpeg?auto=compress&cs=tinysrgb&w=600",
+    category: "Ayam & Unggas"
   }
 ];
 
 export default function MenuSection() {
-  const renderDishIcon = (type: string) => {
-    switch (type) {
-      case "steak":
-        return (
-          <svg className="w-12 h-12 text-ember-500 fill-current" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" className="opacity-10" />
-            <path d="M8 8c-1.5 0-3 1.5-3 3.5 0 2.5 2.5 4.5 5 4.5s5-2 5-4.5C15 9.5 13.5 8 12 8c-.6 0-1.1.2-1.5.5C10.1 8.2 9.6 8 8 8z" />
-            <circle cx="8" cy="11" r="1.5" className="opacity-30" />
-            <circle cx="12" cy="12" r="1.5" className="opacity-30" />
-          </svg>
-        );
-      case "ribs":
-        return (
-          <svg className="w-12 h-12 text-ember-500 fill-current" viewBox="0 0 24 24">
-            <path d="M4 19h16v2H4zm0-4h16v2H4zm0-4h16v2H4zm0-4h16v2H4z" className="opacity-10" />
-            <path d="M19 5h-2v2h2V5zm-4 0H9v2h6V5zM7 5H5v2h2V5zm12 4h-2v2h2V9zm-4 0H9v2h6V9z" />
-          </svg>
-        );
-      case "salmon":
-        return (
-          <svg className="w-12 h-12 text-ember-500 fill-current" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" className="opacity-10" />
-            <path d="M20 12c0-2-2-4.5-5-5.5-1 1.5-2 3-4 4-2.5.5-4 1-5 1-1.5 0-2.5-.5-3.5-1.5" />
-          </svg>
-        );
-      case "chicken":
-        return (
-          <svg className="w-12 h-12 text-ember-500 fill-current" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" className="opacity-10" />
-            <path d="M12 6c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6" />
-          </svg>
-        );
-      default:
-        return <Flame className="w-10 h-10 text-ember-500" />;
-    }
-  };
-
   const getTagStyleClass = (type: string) => {
     switch (type) {
       case "signature":
@@ -150,10 +124,14 @@ export default function MenuSection() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                  <div className="w-20 h-20 rounded-lg bg-charcoal-900 border border-charcoal-800 flex items-center justify-center group-hover:border-ember-500/20 transition-all duration-500 shrink-0">
-                    <div className="group-hover:scale-110 transition-transform duration-500 text-ember-500 group-hover:text-ember-400">
-                      {renderDishIcon(dish.iconType)}
-                    </div>
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden border border-charcoal-800 group-hover:border-ember-500/20 transition-all duration-500 shrink-0">
+                    <Image
+                      src={dish.image}
+                      alt={dish.name}
+                      fill
+                      sizes="(max-width: 640px) 96px, 112px"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
                   </div>
 
                   <div className="space-y-2">

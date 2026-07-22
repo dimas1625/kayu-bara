@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Flame, Sparkles, Search, ArrowLeft, ChevronRight, Calendar } from "lucide-react";
+import { Flame, Sparkles, Search, ChevronRight, Calendar } from "lucide-react";
 
 interface Dish {
   id: number;
@@ -15,6 +16,7 @@ interface Dish {
   tagType: "signature" | "favorit" | "premium" | "rekomendasi" | "sehat" | "lokal" | "ringan" | "pedas" | "klasik" | "unik" | "segar" | "hangat" | "khas";
   details: string[];
   iconType: "steak" | "ribs" | "salmon" | "chicken" | "fish" | "crab" | "squid" | "shrimp" | "mushroom" | "drink";
+  image: string;
   category: "Signature" | "Seafood" | "Ayam & Unggas" | "Vegetarian" | "Minuman";
 }
 
@@ -29,6 +31,7 @@ const allDishes: Dish[] = [
     tagType: "signature",
     details: ["400g Premium Wagyu", "Saus Smoked Chimichurri", "Bawang Putih Panggang"],
     iconType: "steak",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
     category: "Signature"
   },
   {
@@ -40,6 +43,7 @@ const allDishes: Dish[] = [
     tagType: "favorit",
     details: ["Iga Lembut 350g", "Madu Hitam Hutan", "Sambal Korek Asap"],
     iconType: "ribs",
+    image: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&q=80",
     category: "Signature"
   },
   {
@@ -51,6 +55,7 @@ const allDishes: Dish[] = [
     tagType: "signature",
     details: ["300g Wagyu", "Saus Truffle", "Kentang Purée"],
     iconType: "steak",
+    image: "https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80",
     category: "Signature"
   },
   {
@@ -62,6 +67,7 @@ const allDishes: Dish[] = [
     tagType: "premium",
     details: ["350g Black Angus", "Garlic Butter", "Sayuran"],
     iconType: "steak",
+    image: "https://images.unsplash.com/photo-1615937657715-bc7b4b7962c1?w=600&q=80",
     category: "Signature"
   },
   {
@@ -73,6 +79,7 @@ const allDishes: Dish[] = [
     tagType: "favorit",
     details: ["Bebek Asap", "Glaze Jeruk", "Nasi Rempah"],
     iconType: "chicken",
+    image: "https://images.unsplash.com/photo-1642231877874-ce3e205f39c0?w=600&q=80",
     category: "Signature"
   },
   {
@@ -84,6 +91,7 @@ const allDishes: Dish[] = [
     tagType: "favorit",
     details: ["Daging Kambing 300g", "Madu Hutan", "Sambal Kecap"],
     iconType: "ribs",
+    image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600&q=80",
     category: "Signature"
   },
   // Seafood (5 items)
@@ -96,6 +104,7 @@ const allDishes: Dish[] = [
     tagType: "premium",
     details: ["Salmon Atlantik 200g", "Saus Honey Mustard", "Sayuran Panggang"],
     iconType: "salmon",
+    image: "https://images.unsplash.com/photo-1676300185165-3f543c1fcb72?w=600&q=80",
     category: "Seafood"
   },
   {
@@ -107,6 +116,7 @@ const allDishes: Dish[] = [
     tagType: "rekomendasi",
     details: ["Kakap Merah", "Bumbu Bali", "Sambal Matah"],
     iconType: "fish",
+    image: "https://images.pexels.com/photos/31029753/pexels-photo-31029753.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Seafood"
   },
   {
@@ -118,6 +128,7 @@ const allDishes: Dish[] = [
     tagType: "premium",
     details: ["Kepiting 500g", "Rempah Kelapa", "Sambal Petis"],
     iconType: "crab",
+    image: "https://images.unsplash.com/photo-1710508852956-f1eba75d7580?w=600&q=80",
     category: "Seafood"
   },
   {
@@ -129,6 +140,7 @@ const allDishes: Dish[] = [
     tagType: "favorit",
     details: ["Cumi Segar", "Kecap Manis Pedas", "Aroma Kelapa"],
     iconType: "squid",
+    image: "https://images.pexels.com/photos/15387326/pexels-photo-15387326.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Seafood"
   },
   {
@@ -140,6 +152,7 @@ const allDishes: Dish[] = [
     tagType: "premium",
     details: ["Udang Galah", "Garlic Butter", "Saus Lemon"],
     iconType: "shrimp",
+    image: "https://images.unsplash.com/photo-1625943555419-56a2cb596640?w=600&q=80",
     category: "Seafood"
   },
   // Ayam & Unggas (5 items)
@@ -152,6 +165,7 @@ const allDishes: Dish[] = [
     tagType: "favorit",
     details: ["Ayam Organik", "Glace Madu Hutan", "Sambal Matah Kecombrang"],
     iconType: "chicken",
+    image: "https://images.pexels.com/photos/5704254/pexels-photo-5704254.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Ayam & Unggas"
   },
   {
@@ -163,6 +177,7 @@ const allDishes: Dish[] = [
     tagType: "klasik",
     details: ["10 Tusuk Fillet", "Saus Kacang", "Lontong"],
     iconType: "chicken",
+    image: "https://images.pexels.com/photos/37076559/pexels-photo-37076559.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Ayam & Unggas"
   },
   {
@@ -174,6 +189,7 @@ const allDishes: Dish[] = [
     tagType: "pedas",
     details: ["Ayam Kampung", "Bumbu Taliwang", "Plecing Kangkung"],
     iconType: "chicken",
+    image: "https://images.pexels.com/photos/37320454/pexels-photo-37320454.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Ayam & Unggas"
   },
   {
@@ -185,17 +201,19 @@ const allDishes: Dish[] = [
     tagType: "favorit",
     details: ["Bebek Garing", "Sambal Korek", "Lalapan"],
     iconType: "chicken",
+    image: "https://images.unsplash.com/photo-1645066803665-d16a79a21566?w=600&q=80",
     category: "Ayam & Unggas"
   },
   {
     id: 304,
-    name: "Burung Puyuh Bakar Madu",
+    name: "Burung Dara Bakar Madu",
     price: "Rp 95.000",
-    description: "Burung puyuh pilihan dimarinasi madu hutan dan dibakar di atas kayu kopi.",
+    description: "Burung dara pilihan dimarinasi madu hutan dan dibakar di atas kayu kopi.",
     tag: "Unik",
     tagType: "unik",
-    details: ["2 Ekor Puyuh", "Madu Hutan", "Saus Pedas"],
+    details: ["1 Ekor Dara", "Madu Hutan", "Saus Pedas"],
     iconType: "chicken",
+    image: "https://images.pexels.com/photos/37095723/pexels-photo-37095723.jpeg",
     category: "Ayam & Unggas"
   },
   // Vegetarian (4 items)
@@ -208,28 +226,31 @@ const allDishes: Dish[] = [
     tagType: "sehat",
     details: ["Portobello", "Minyak Zaitun", "Keju Vegan"],
     iconType: "mushroom",
+    image: "https://images.pexels.com/photos/5950444/pexels-photo-5950444.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Vegetarian"
   },
   {
     id: 402,
-    name: "Tahu Tempe Bakar Platter",
-    price: "Rp 65.000",
-    description: "Tahu sutra dan tempe bacem pilihan dibakar dengan olesan kecap manis rempah.",
-    tag: "Lokal",
-    tagType: "lokal",
-    details: ["Tahu Sutra", "Tempe Bacem", "Sambal Bajak"],
+    name: "Terong Bakar Sambal Matah",
+    price: "Rp 55.000",
+    description: "Terong ungu segar dibakar di atas bara kayu, disiram sambal matah khas Bali yang segar dan pedas.",
+    tag: "Segar",
+    tagType: "segar",
+    details: ["Terong Ungu", "Sambal Matah", "Bawang Goreng"],
     iconType: "mushroom",
+    image: "https://images.pexels.com/photos/4294490/pexels-photo-4294490.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Vegetarian"
   },
   {
     id: 403,
-    name: "Jagung Bakar Garlic Herb",
-    price: "Rp 45.000",
-    description: "Jagung manis utuh dibakar dengan olesan mentega herbal bawang putih segar.",
-    tag: "Ringan",
-    tagType: "ringan",
-    details: ["Jagung Manis", "Mentega Bawang", "Rempah Herbal"],
+    name: "Asparagus Panggang Keju Parmesan",
+    price: "Rp 85.000",
+    description: "Asparagus segar dipanggang dengan taburan keju parmesan dan perasan lemon, sederhana namun kaya rasa.",
+    tag: "Sehat",
+    tagType: "sehat",
+    details: ["Asparagus Segar", "Keju Parmesan", "Perasan Lemon"],
     iconType: "mushroom",
+    image: "https://images.pexels.com/photos/4050985/pexels-photo-4050985.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Vegetarian"
   },
   {
@@ -241,6 +262,7 @@ const allDishes: Dish[] = [
     tagType: "sehat",
     details: ["Jamur Tiram", "Kecap Pedas", "Aroma Asap"],
     iconType: "mushroom",
+    image: "https://images.pexels.com/photos/7840856/pexels-photo-7840856.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Vegetarian"
   },
   // Minuman (4 items)
@@ -253,6 +275,7 @@ const allDishes: Dish[] = [
     tagType: "segar",
     details: ["Jeruk", "Soda", "Smoked Rosemary"],
     iconType: "drink",
+    image: "https://images.unsplash.com/photo-1654922704274-cd34f165c5e7?w=600&q=80",
     category: "Minuman"
   },
   {
@@ -264,6 +287,7 @@ const allDishes: Dish[] = [
     tagType: "hangat",
     details: ["Jahe Merah", "Madu Hutan", "Jeruk Nipis"],
     iconType: "drink",
+    image: "https://images.unsplash.com/photo-1631029098074-be99eb2b425c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2luZ2VyJTIwdGVhJTIwaG9uZXklMjBsaW1lfGVufDB8fDB8fHww",
     category: "Minuman"
   },
   {
@@ -275,6 +299,7 @@ const allDishes: Dish[] = [
     tagType: "klasik",
     details: ["Kelapa Muda", "Madu Hutan", "Es Batu"],
     iconType: "drink",
+    image: "https://plus.unsplash.com/premium_photo-1680497044033-5dc96f699b81?w=600&q=80",
     category: "Minuman"
   },
   {
@@ -286,6 +311,7 @@ const allDishes: Dish[] = [
     tagType: "khas",
     details: ["Arabika Gayo", "Manual Drip", "Arang Aktif"],
     iconType: "drink",
+    image: "https://images.unsplash.com/photo-1522675397120-8cb88c83ac16?w=600&q=80",
     category: "Minuman"
   }
 ];
@@ -494,8 +520,24 @@ export default function MenuPage() {
                       </div>
 
                       <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                        <div className="w-20 h-20 rounded-lg bg-charcoal-950 border border-charcoal-800 flex items-center justify-center group-hover:border-ember-500/20 transition-all duration-500 shrink-0">
-                          <div className="group-hover:scale-110 transition-transform duration-500 text-ember-500 group-hover:text-ember-400">
+                        <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-charcoal-800 group-hover:border-ember-500/30 transition-all duration-500 shrink-0 bg-charcoal-950">
+                          <Image
+                            src={dish.image}
+                            alt={dish.name}
+                            fill
+                            sizes="80px"
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            onError={(e) => {
+                              const target = e.currentTarget as HTMLImageElement;
+                              target.style.display = "none";
+                              const fallback = target.nextElementSibling as HTMLElement | null;
+                              if (fallback) fallback.style.display = "flex";
+                            }}
+                          />
+                          <div
+                            className="absolute inset-0 items-center justify-center text-ember-500 hidden"
+                            aria-hidden="true"
+                          >
                             {renderDishIcon(dish.iconType)}
                           </div>
                         </div>

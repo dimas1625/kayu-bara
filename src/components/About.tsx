@@ -42,35 +42,6 @@ export default function About() {
                 Kami memadukan kayu kopi yang berkarakter kuat untuk steak wagyu premium, serta kayu apel beraroma buah yang lembut untuk mengasap hidangan laut dan ayam secara sempurna.
               </p>
             </div>
-
-            {/* Statistics Row */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-charcoal-800">
-              <div className="space-y-1">
-                <span className="font-heading text-3xl sm:text-4xl font-extrabold text-[#E8622C] block">
-                  12
-                </span>
-                <span className="font-body text-xs sm:text-sm text-charcoal-300 block leading-tight font-light">
-                  Tahun Pengalaman
-                </span>
-              </div>
-              <div className="space-y-1">
-                <span className="font-heading text-3xl sm:text-4xl font-extrabold text-gold-500 block">
-                  34+
-                </span>
-                <span className="font-body text-xs sm:text-sm text-charcoal-300 block leading-tight font-light">
-                  Menu Signature
-                </span>
-              </div>
-              <div className="space-y-1">
-                <span className="font-heading text-3xl sm:text-4xl font-extrabold text-[#E8622C] block">
-                  100%
-                </span>
-                <span className="font-body text-xs sm:text-sm text-charcoal-300 block leading-tight font-light">
-                  Bara Kayu Asli
-                </span>
-              </div>
-            </div>
-
           </div>
 
           {/* Column 2: Chef Image Visual (Right) */}
@@ -81,8 +52,8 @@ export default function About() {
             {/* Actual image frame */}
             <div className="relative bg-charcoal-900 border border-charcoal-800 rounded-2xl overflow-hidden aspect-[4/5] sm:aspect-square lg:aspect-[4/5]">
               <Image
-                src="/images/chef_grilling.png"
-                alt="Chef Kayu Bara memanggang dengan bara kayu sejati"
+                src="https://images.squarespace-cdn.com/content/v1/620822fa2205ef6d7cbd0854/1774572273505-F8H5E34B6RKGY1HRDAKD/Blog-Why-Wood-Fired-Cooking-Tastes-Better-Asador.jpg"
+                alt=""
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
