@@ -1,6 +1,6 @@
 # Kayu Bara
 
-Landing page dan sistem reservasi online untuk **Kayu Bara**, restoran grill dengan konsep bakaran kayu otentik.
+Sistem reservasi online untuk restoran **Kayu Bara**, restoran grill dengan konsep bakaran kayu otentik.
 
 ## Tentang
 
