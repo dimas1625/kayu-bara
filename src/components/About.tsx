@@ -61,17 +61,6 @@ export default function About() {
               />
               {/* Overlay shading */}
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-transparent to-transparent opacity-60" />
-
-              {/* Micro badge on image */}
-              <div className="absolute bottom-4 left-4 right-4 bg-charcoal-950/80 backdrop-blur-md border border-charcoal-800 rounded-xl p-4 flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <span className="text-[10px] text-[#E8622C] font-semibold uppercase tracking-wider block">Head Chef</span>
-                  <span className="text-sm font-heading font-bold text-charcoal-50 block">Chef Bara Sentosa</span>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-[#E8622C]/10 border border-[#E8622C]/20 flex items-center justify-center">
-                  <Flame className="w-4 h-4 text-[#E8622C]" />
-                </div>
-              </div>
             </div>
           </div>
 
