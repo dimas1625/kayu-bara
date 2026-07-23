@@ -40,30 +40,30 @@ const getOperationalHours = (dateString: string) => {
 
 const checkTimeSlotAvailability = (time: string, dateString: string) => {
   if (!time || !dateString) return null;
-  
+
   const parts = time.split(":");
   if (parts.length < 2) return null;
   const hour = parseInt(parts[0], 10);
   const minute = parseInt(parts[1], 10);
   const totalMinutes = hour * 60 + minute;
-  
+
   const op = getOperationalHours(dateString);
   if (!op) return null;
-  
+
   const openParts = op.open.split(":");
   const lastParts = op.lastOrder.split(":");
   const openLimit = parseInt(openParts[0], 10) * 60 + parseInt(openParts[1], 10);
   const lastLimit = parseInt(lastParts[0], 10) * 60 + parseInt(lastParts[1], 10);
-  
+
   if (totalMinutes < openLimit || totalMinutes > lastLimit) {
     return { available: false, message: "Di luar jam operasional" };
   }
-  
+
   // Peak dinner slots: 19:00 - 19:45 is fully booked
   if (totalMinutes >= 19 * 60 && totalMinutes <= 19 * 60 + 45) {
     return { available: false, message: "Penuh, coba jam lain" };
   }
-  
+
   return { available: true, message: "Tersedia" };
 };
 
@@ -72,7 +72,7 @@ export default function ReservationWidget() {
     name: "",
     phone: "",
     date: "",
-    guests: 2,
+    guests: 1,
     timeSlot: ""
   });
 
@@ -127,7 +127,7 @@ export default function ReservationWidget() {
     if (!formData.name.trim()) newErrors.name = "Nama lengkap wajib diisi";
     if (!formData.phone.trim()) newErrors.phone = "Nomor WhatsApp wajib diisi";
     if (!formData.date) newErrors.date = "Tanggal reservasi wajib dipilih";
-    
+
     if (!formData.timeSlot) {
       newErrors.timeSlot = "Waktu reservasi wajib dipilih";
     } else if (formData.date) {
@@ -146,7 +146,7 @@ export default function ReservationWidget() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    
+
     // Simulate API request delay
     setTimeout(() => {
       setIsSubmitting(false);
@@ -346,7 +346,7 @@ export default function ReservationWidget() {
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-charcoal-900 border border-gold-500/30 rounded-2xl w-full max-w-md p-6 sm:p-8 shadow-2xl relative text-center scale-up animate-fade-in gold-glow">
-            
+
             {/* Header Success Animation */}
             <div className="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center mx-auto mb-6 text-gold-500 animate-pulse">
               <CheckCircle className="w-10 h-10" />
@@ -355,7 +355,7 @@ export default function ReservationWidget() {
             <h3 className="font-heading text-2xl sm:text-3xl font-bold text-charcoal-50 mb-2">
               Reservasi Berhasil
             </h3>
-            
+
             <p className="text-charcoal-200 text-sm font-light font-body mb-6">
               Kode reservasi Anda telah diterbitkan. Silakan simpan detail di bawah ini.
             </p>
@@ -364,7 +364,7 @@ export default function ReservationWidget() {
             <div className="bg-charcoal-950 border border-charcoal-800 rounded-xl p-5 mb-8 text-left space-y-4 font-body relative overflow-hidden">
               {/* Decor slice */}
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-gold-500/5 to-transparent pointer-events-none" />
-              
+
               <div className="flex justify-between items-center border-b border-charcoal-800 pb-3">
                 <span className="text-[10px] tracking-widest text-charcoal-300 uppercase font-semibold">ID BOOKING</span>
                 <span className="font-heading font-bold text-gold-500 tracking-wider">{bookingId}</span>
